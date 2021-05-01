@@ -9,13 +9,13 @@ from timeit import time
 class REID:
     def __init__(self):
         self.model = torchreid.models.build_model(
-                name='resnet50',
+                name='osnet_x1_0',
                 num_classes=1,#human
                 loss='softmax',
                 pretrained=True,
                 use_gpu = True
             )
-        torchreid.utils.load_pretrained_weights(self.model, 'model_data/models/model.pth')
+        torchreid.utils.load_pretrained_weights(self.model, '/content/gdrive/MyDrive/osnet_x1_0_market_256x128_amsgrad_ep150_stp60_lr0.0015_b64_fb10_softmax_labelsmooth_flip.pth')
         self.model = self.model.cuda()
         self.optimizer = torchreid.optim.build_optimizer(
                 self.model,

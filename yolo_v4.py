@@ -20,7 +20,7 @@ from keras.utils import multi_gpu_model
 
 class YOLO4(object):
     _defaults = {
-        "model_path": 'model_data/models/yolov4.h5',
+        "model_path": '/content/gdrive/MyDrive/yolov4.h5',
         "anchors_path": 'model_data/anchors/yolov4_anchors.txt',
         "classes_path": 'model_data/classes/coco_classes.txt',
         "score" : 0.5,

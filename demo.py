@@ -183,8 +183,11 @@ def main(yolo):
     feats = dict()
     for i in images_by_id:
         print('ID number {} -> Number of frames {}'.format(i, len(images_by_id[i])))
-        feats[i] = reid._features(images_by_id[i]) #reid._features(images_by_id[i][:min(len(images_by_id[i]),100)])
-    
+        try:
+          feats[i] = reid._features(images_by_id[i]) #reid._features(images_by_id[i][:min(len(images_by_id[i]),100)])
+        except:
+          print("corrupted frame")
+
     ids_per_frame2 = copy.deepcopy(ids_per_frame)
     
     for f in ids_per_frame:
@@ -253,7 +256,7 @@ def main(yolo):
         loadvideo = LoadVideo(combined_path)
         video_capture, frame_rate, w, h = loadvideo.get_VideoLabels()
         fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-        complete_path = out_dir+'/Complete'+'.avi'
+        complete_path = out_dir+'Complete'+'.avi'
         out = cv2.VideoWriter(complete_path, fourcc, frame_rate, (w, h))
         
         for frame in range(len(all_frames)):
